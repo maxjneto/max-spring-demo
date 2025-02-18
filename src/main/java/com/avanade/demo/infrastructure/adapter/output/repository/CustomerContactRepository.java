@@ -1,6 +1,6 @@
-package com.avanade.demo.infrastructure.repository;
+package com.avanade.demo.infrastructure.adapter.output.repository;
 
-import com.avanade.demo.core.domain.CustomerContact;
+import com.avanade.demo.domain.model.CustomerContact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

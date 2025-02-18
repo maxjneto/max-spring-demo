@@ -1,10 +1,10 @@
-package com.avanade.demo.core.domain;
+package com.avanade.demo.domain.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "document_types")
-public class DocumentType {
+@Table(name = "customer_contacts_types")
+public class CustomerContactType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

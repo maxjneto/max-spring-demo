@@ -1,10 +1,10 @@
-package com.avanade.demo.core.domain;
+package com.avanade.demo.domain.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "customer_documents")
-public class CustomerDocument {
+@Table(name = "customer_contacts")
+public class CustomerContact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,11 +14,11 @@ public class CustomerDocument {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "document_type_id", nullable = false)
-    private DocumentType documentType;
+    @JoinColumn(name = "customer_contact_type_id", nullable = false)
+    private CustomerContactType customerContactType;
 
     @Column(nullable = false)
-    private String document;
+    private String contactValue;
 
     // Getters and Setters
 }
