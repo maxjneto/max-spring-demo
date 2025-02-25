@@ -18,6 +18,9 @@ public class CustomerPersistenceAdapter implements CustomerOutput {
 
     @Override
     public CustomerDTO getCustomerById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Id do cliente não pode ser nulo");
+        }
         final Customer cust = customerRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Cliente não encontrado"));
 
