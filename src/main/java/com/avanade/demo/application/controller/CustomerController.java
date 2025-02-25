@@ -1,6 +1,7 @@
 package com.avanade.demo.application.controller;
 
 import com.avanade.demo.application.dto.CustomerDTO;
+import com.avanade.demo.application.port.input.GetCustomerUseCase;
 import com.avanade.demo.domain.service.CustomerService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,7 @@ public class CustomerController {
     private static final Logger logger = LogManager.getLogger(CustomerController.class);
 
     @Autowired
-    private CustomerService customerService;
+    private GetCustomerUseCase customerService;
 
     @GetMapping("/cliente/{id}")
     public CustomerDTO getCustomerById(@PathVariable long id) {

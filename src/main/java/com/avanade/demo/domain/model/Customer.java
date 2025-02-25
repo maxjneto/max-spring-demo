@@ -16,6 +16,10 @@ public class Customer {
     @JoinColumn(name = "segment_id", nullable = false)
     private Segment segment;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
