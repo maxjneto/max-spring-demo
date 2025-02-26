@@ -1,4 +1,6 @@
 package com.avanade.demo.application.dto;
 
-public record CustomerContactDTO(String email, String phone) {
+import com.avanade.demo.domain.model.CustomerContactType;
+
+public record CustomerContactDTO(String type, String value) {
 }

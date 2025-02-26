@@ -52,12 +52,12 @@ INSERT INTO segment(id, name) VALUES (3, 'Next');
 INSERT INTO segment(id, name) VALUES (4, 'Black');
 INSERT INTO segment(id, name) VALUES (5, 'Prime');
 
-INSERT INTO customer(id, name, segment_id) VALUES (1, 'Maria da Silva', 1);
-INSERT INTO customer(id, name, segment_id) VALUES (2, 'João Penca', 2);
-INSERT INTO customer(id, name, segment_id) VALUES (3, 'Joana Chica', 3);
-INSERT INTO customer(id, name, segment_id) VALUES (4, 'Juliana Giu', 4);
-INSERT INTO customer(id, name, segment_id) VALUES (5, 'Alex Freixo', 4);
-INSERT INTO customer(id, name, segment_id) VALUES (6, 'Lucas Silva', 5);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (1, 'Maria da Silva',1);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (2, 'João Penca',2);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (3, 'Joana Chica',3);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (4, 'Juliana Giu',4);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (5, 'Alex Freixo',4);
+INSERT INTO customer(id, name,cpf, segment_id) VALUES (6, 'Lucas Silva',5);
 
 INSERT INTO document_types(id, name) VALUES (1, 'CPF');
 INSERT INTO document_types(id, name) VALUES (2, 'RG');

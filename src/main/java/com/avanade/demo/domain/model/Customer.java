@@ -1,6 +1,14 @@
 package com.avanade.demo.domain.model;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "customer")
@@ -16,9 +24,14 @@ public class Customer {
     @JoinColumn(name = "segment_id", nullable = false)
     private Segment segment;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Customer(){}
+
+    public Customer(String name, Segment segment) {
+        this.name = name;
+        this.segment = segment;
     }
+
+    public void setId(Long id) { this.id = id; }
 
     public Long getId() {
         return id;
@@ -39,4 +52,5 @@ public class Customer {
     public void setSegment(Segment segment) {
         this.segment = segment;
     }
+
 }

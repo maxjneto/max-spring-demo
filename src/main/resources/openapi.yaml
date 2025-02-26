@@ -6,7 +6,23 @@ info:
 servers:
   - url: http://localhost:8080
 paths:
-  /cliente/{id}:
+  /customer:
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerDTO'
+      responses:
+        '200':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDTO'
+  /customer/{id}:
     get:
       summary: Get customer by ID
       parameters:
@@ -24,28 +40,7 @@ paths:
                 $ref: '#/components/schemas/CustomerDTO'
         '404':
           description: Customer not found
-
-    post:
-      summary: Save a new customer
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerInputDTO'
-      responses:
-        '201':
-          description: Customer created successfully
-        '400':
-          description: Invalid input
-
-  /cliente/name/{customerName}:
+  /customer/name/{customerName}:
     get:
       summary: Get customer by name
       parameters:
@@ -63,29 +58,7 @@ paths:
                 $ref: '#/components/schemas/CustomerDTO'
         '404':
           description: Customer not found
-
-  /cliente/documents/{id}:
-    get:
-      summary: Get customer documents by ID
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CustomerDocumentDTO'
-        '404':
-          description: Customer not found
-
-  /cliente/contacts/{id}:
+  /customer/contacts/{id}:
     get:
       summary: Get customer contacts by ID
       parameters:
@@ -105,8 +78,73 @@ paths:
                   $ref: '#/components/schemas/CustomerContactDTO'
         '404':
           description: Customer not found
+  /customer/documents/{id}:
+    get:
+      summary: Get customer documents by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerDocumentDTO'
+        '404':
+          description: Customer not found
+  /customer/contact:
+    post:
+      summary: Add contact to customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactOrDocumentDTO'
+      responses:
+        '200':
+          description: Contact added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContactDTO'
+  /customer/document:
+    post:
+      summary: Add document to customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactOrDocumentDTO'
+      responses:
+        '200':
+          description: Document added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerDocumentDTO'
 components:
   schemas:
+    CreateCustomerDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        segmentName:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerContactDTO'
+        cpf:
+          type: string
     CustomerDTO:
       type: object
       properties:
@@ -114,31 +152,7 @@ components:
           type: integer
         name:
           type: string
-        email:
-          type: string
-
-    CustomerDocumentDTO:
-      type: object
-      properties:
-        documentNumber:
-          type: string
-        documentType:
-          type: string
-
-    CustomerContactDTO:
-      type: object
-      properties:
-        contactName:
-          type: string
-        contactEmail:
-          type: string
-
-    CustomerInputDTO:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
+        segmentName:
           type: string
         documents:
           type: array
@@ -148,3 +162,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomerContactDTO'
+    CustomerContactDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    CustomerDocumentDTO:
+      type: object
+      properties:
+        documentNumber:
+          type: string
+        documentType:
+          type: string
+    AddContactOrDocumentDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+        customerId:
+          type: integer

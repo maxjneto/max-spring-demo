@@ -12,5 +12,19 @@ public class CustomerContactType {
     @Column(nullable = false)
     private String name;
 
-    // Getters and Setters
+    public CustomerContactType(){}
+
+    public CustomerContactType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getName() {return name;}
+
+    public void setName(String name) {this.name = name;}
+
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
+
 }
